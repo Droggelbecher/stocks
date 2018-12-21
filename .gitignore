@@ -1,0 +1,14 @@
+.dub
+docs.json
+__dummy.html
+docs/
+stocks.so
+stocks.dylib
+stocks.dll
+stocks.a
+stocks.lib
+stocks-test-*
+*.exe
+*.o
+*.obj
+*.lst

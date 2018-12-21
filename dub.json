@@ -1,0 +1,9 @@
+{
+	"name": "stocks",
+	"authors": [
+		"henning"
+	],
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2018, henning",
+	"license": "proprietary"
+}
