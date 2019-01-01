@@ -2,13 +2,16 @@
 docs.json
 __dummy.html
 docs/
+stocks
 stocks.so
 stocks.dylib
 stocks.dll
 stocks.a
 stocks.lib
 stocks-test-*
+*.s
 *.exe
 *.o
 *.obj
 *.lst
+config.json

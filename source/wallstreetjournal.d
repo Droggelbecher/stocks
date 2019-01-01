@@ -7,7 +7,6 @@ import std.format;
 import std.json: parseJSON, JSONValue;
 import std.net.curl: get;
 import std.regex;
-import std.typecons: Tuple;
 import std.typecons;
 import std.uri;
 import std.conv;
@@ -21,12 +20,7 @@ class WallStreetJournal: StockAPI {
 	}
 
 	override
-	SymbolInfo[] search_symbol(string term) {
-		return [];
-	}
-
-	override
-	StockPrice[] historical(string symbol, DateTime from, DateTime to_) {
+	StockPrices historical(string symbol, DateTime from, DateTime to_) {
 		auto url = format(
 			"http://quotes.wsj.com/%s/historical-prices/download?MOD_VIEW=page&num_rows=6299.041666666667&range_days=6299.041666666667&startDate=%d/%d/%d&endDate=%d/%d/%d",
 			symbol,
@@ -34,7 +28,8 @@ class WallStreetJournal: StockAPI {
 			to_.month, to_.day, to_.year
 		);
 		auto r = regex(r"(\d+)/(\d+)/(\d+)");
-		return url.get
+		return StockPrices(
+			url.get
 			.csvReader!(Tuple!(string, float, float, float, float))
 			.array
 			.map!(delegate(row) {
@@ -44,7 +39,8 @@ class WallStreetJournal: StockAPI {
 					row[1], row[2], row[3], row[4]
 				);
 			})
-			.array;
+			.array
+		);
 	}
 }
 
